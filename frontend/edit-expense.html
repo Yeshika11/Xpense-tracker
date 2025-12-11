@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Expense - Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="dashboard.html" class="navbar-brand">Expense Tracker</a>
+            <ul class="navbar-nav">
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="expenses.html" class="nav-link">Expenses</a></li>
+                <li><a href="monthly-report.html" class="nav-link">Reports</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
+                <li>
+                    <div id="themeToggle" class="theme-toggle">
+                        <div class="theme-toggle-slider"></div>
+                    </div>
+                </li>
+                <li><button id="logoutBtn" class="btn btn-secondary btn-sm">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container" style="padding-top: 2rem; padding-bottom: 2rem; max-width: 800px;">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Edit Expense</h2>
+                <p class="text-muted">Update expense details</p>
+            </div>
+
+            <div class="card-body" id="formContainer">
+                <div class="text-center" id="loader">
+                    <div class="spinner" style="margin: 2rem auto;"></div>
+                    <p class="text-muted">Loading expense...</p>
+                </div>
+
+                <form id="editExpenseForm" class="hidden">
+                    <div class="form-group">
+                        <label class="form-label" for="amount">Amount (Rs.)</label>
+                        <input type="number" id="amount" class="form-control" placeholder="0.00" step="0.01" min="0"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="category">Category</label>
+                        <select id="category" class="form-control" required>
+                            <option value="">Select a category...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="date">Date</label>
+                        <input type="date" id="date" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="notes">Notes</label>
+                        <textarea id="notes" class="form-control" placeholder="Add any notes (optional)"
+                            rows="4"></textarea>
+                    </div>
+
+                    <!-- Existing Images -->
+                    <div class="form-group">
+                        <label class="form-label">Existing Images</label>
+                        <div id="existingImages" class="image-preview"></div>
+                    </div>
+
+                    <!-- New Images -->
+                    <div class="form-group">
+                        <label class="form-label">Add More Images (optional)</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="newImages" class="file-input" accept="image/*" multiple>
+                            <label for="newImages" class="file-label">
+                                Click to upload additional images
+                            </label>
+                        </div>
+                        <div id="newImagePreview" class="image-preview"></div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <span id="submitText">Update Expense</span>
+                            <span id="submitSpinner" class="hidden">
+                                <div class="spinner spinner-sm" style="display: inline-block;"></div>
+                            </span>
+                        </button>
+                        <a href="expenses.html" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/expense-form.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Expense - Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="dashboard.html" class="navbar-brand">Expense Tracker</a>
+            <ul class="navbar-nav">
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="expenses.html" class="nav-link">Expenses</a></li>
+                <li><a href="monthly-report.html" class="nav-link">Reports</a></li>
+                <li><a href="profile.html" class="nav-link">Profile</a></li>
+                <li>
+                    <div id="themeToggle" class="theme-toggle">
+                        <div class="theme-toggle-slider"></div>
+                    </div>
+                </li>
+                <li><button id="logoutBtn" class="btn btn-secondary btn-sm">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container" style="padding-top: 2rem; padding-bottom: 2rem; max-width: 800px;">
+        <div class="card">
+            <div class="text-center" id="loader">
+                <div class="spinner" style="margin: 2rem auto;"></div>
+                <p class="text-muted">Loading expense details...</p>
+            </div>
+
+            <div id="expenseDetails" class="hidden">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/view-expense.js"></script>
+</body>
+
+</html>

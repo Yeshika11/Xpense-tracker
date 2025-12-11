@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="dashboard.html" class="navbar-brand">Expense Tracker</a>
+            <ul class="navbar-nav">
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="expenses.html" class="nav-link">Expenses</a></li>
+                <li><a href="monthly-report.html" class="nav-link">Reports</a></li>
+                <li><a href="profile.html" class="nav-link active">Profile</a></li>
+                <li>
+                    <div id="themeToggle" class="theme-toggle">
+                        <div class="theme-toggle-slider"></div>
+                    </div>
+                </li>
+                <li><button id="logoutBtn" class="btn btn-secondary btn-sm">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container" style="padding-top: 2rem; padding-bottom: 2rem; max-width: 700px;">
+        <!-- Unified Profile Form -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">My Profile</h2>
+                <p class="text-muted">Manage your profile information and security settings</p>
+            </div>
+            <div class="card-body">
+
+                <!-- Profile Picture Section -->
+                <div
+                    style="text-align: center; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--card-border);">
+                    <div style="position: relative; display: inline-block;">
+                        <img id="profilePicture" src="../uploads/profiles/default-avatar.jpeg" alt="Profile"
+                            style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--primary); object-fit: cover;">
+                        <label for="profilePictureInput"
+                            style="position: absolute; bottom: 0; right: 0; background: var(--primary); color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.25rem;">
+                            +
+                        </label>
+                        <input type="file" id="profilePictureInput" accept="image/*" style="display: none;">
+                    </div>
+                    <p class="text-muted" style="margin-top: 0.5rem; font-size: 0.875rem;">Upload new profile picture
+                    </p>
+                </div>
+
+                <!-- Profile Information Form -->
+                <form id="profileForm">
+                    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);">
+                        Personal Information</h3>
+
+                    <div class="form-group">
+                        <label class="form-label" for="username">Username</label>
+                        <input type="text" id="username" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+
+                    <div style="border-top: 1px solid var(--card-border); margin: 2rem 0; padding-top: 2rem;">
+                        <h3
+                            style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);">
+                            Change Password</h3>
+                        <p class="text-muted" style="font-size: 0.875rem; margin-bottom: 1.5rem;">Leave password fields
+                            empty if you don't want to change your password</p>
+                    </div>
+
+                    <div class="form-group password-toggle">
+                        <label class="form-label" for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" class="form-control"
+                            placeholder="Enter current password" style="padding-right: 2.5rem;">
+                        <span class="password-toggle-icon" onclick="togglePasswordVisibility('currentPassword', this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                <path fill-rule="evenodd"
+                                    d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </div>
+
+                    <div class="form-group password-toggle">
+                        <label class="form-label" for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" class="form-control" minlength="6"
+                            placeholder="Enter new password" style="padding-right: 2.5rem;">
+                        <span class="password-toggle-icon" onclick="togglePasswordVisibility('newPassword', this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                <path fill-rule="evenodd"
+                                    d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <small class="text-muted">Minimum 6 characters</small>
+                    </div>
+
+                    <div class="form-group password-toggle">
+                        <label class="form-label" for="confirmNewPassword">Confirm New Password</label>
+                        <input type="password" id="confirmNewPassword" class="form-control"
+                            placeholder="Confirm new password" style="padding-right: 2.5rem;">
+                        <span class="password-toggle-icon"
+                            onclick="togglePasswordVisibility('confirmNewPassword', this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                <path fill-rule="evenodd"
+                                    d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </div>
+
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                        <button type="button" id="saveProfileBtn" class="btn btn-primary" style="flex: 1;">
+                            <span id="profileSubmitText">Save Changes</span>
+                            <span id="profileSpinner" class="hidden">
+                                <div class="spinner spinner-sm" style="display: inline-block;"></div>
+                            </span>
+                        </button>
+                        <button type="button" id="changePasswordBtn" class="btn btn-secondary" style="flex: 1;">
+                            <span id="passwordSubmitText">Change Password</span>
+                            <span id="passwordSpinner" class="hidden">
+                                <div class="spinner spinner-sm" style="display: inline-block;"></div>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+
+</html>
